@@ -1,7 +1,8 @@
 <html>
 	<style>
-        div{border:1px solid black;}
-		.team{float:left;width:500px;margin-right:10px;}
+        li{border:1px solid black; list-style: none;}
+		article{display:flex; height:95%; justify-content: center; align-items:center;}
+		.team{float:left;width:500px;margin-right:20px; border:1px solid black;}
         .img{width: 70px;height: 70px;float:left;margin-right:10px;}
         .champ_name{height: 70px; line-height: 70px; font-size:20px; font-weight: bold; }
     </style>
@@ -42,18 +43,21 @@
 		};
 
 		// html에 출력
-		document.write("<div class='team'>")
+		document.write("<article>")
+		document.write("<div class='team'>");
 		for (var i=0; i < select_champ_count; i++)
 		{
 			in_text = chosen_champ[i]
-			document.write("<div><div class='img'><img width=70px height=70px src='./imgs/"+in_text+".jpg'></div><div class='champ_name'>"+in_text+"</div></div>")
+			document.write("<li><div class='img'><img width=70px height=70px src='./imgs/"+in_text+".jpg'></div><div class='champ_name'>"+in_text+"</div></li>")
 			if (i+1 == select_champ_count/2){
-				document.write("</div>")
-				document.write("<div class='team'>")
+				document.write("</div>");
+				document.write("<div class='team'>");
 			}
 		};
-		document.write("</div>")
-			
-		document.write("</br>챔피언 수: "+champ.length);
+		document.write("</div>");
+		document.write("</article>")
+		document.write("챔피언 수: "+champ.length);
+		
+		
 	</script>
 </html>
