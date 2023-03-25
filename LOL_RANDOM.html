@@ -1,21 +1,13 @@
 <html>
-	<style>
-        li{border:1px solid black; list-style: none;}
-		article{display:flex; height:95%; justify-content: center; align-items:center;}
-		.team{float:left;width:500px;margin-right:20px; border:1px solid black;}
-        .img{width: 70px;height: 70px;float:left;margin-right:10px;}
-        .champ_name{height: 70px; line-height: 70px; font-size:20px; font-weight: bold; }
-    </style>
+	<head>
+		<link rel="stylesheet" href="view_setting.css">
+	</head>
 	<script>
-		// 설정 --------
-		const select_champ_count = 12;		//A팀 B팀 모두 합한 챔피언 수
-		// -------------
-		
 		// 난수 생성
 		function rand(len){
 			return Math.floor(Math.random() * (len));
 		};
-
+		
 		// 챔피언 리스트
 		var champ = new Array(
 			'가렌','갈리오','갱플랭크','그라가스','그레이브즈','그웬','나르','나미','나서스','노틸러스','녹턴','누누','니달리','니코','닐라',
@@ -29,35 +21,52 @@
 			'직스','진','질리언','징크스','초가스','카르마','카밀','카사딘','카서스','카시오페아','카이사','카직스','카타리나','칼리스타','케넨',
 			'케이틀린','케인','케일','코그모','코르키','퀸','크산테','클레드','키아나','킨드레드','타릭','탈론','탈리야','탐켄치','트런들',
 			'트리스타나','트린다미어','트위스티드 페이트','트위치','티모','파이크','판테온','피들스틱','피오라','피즈','하이머딩거','헤카림'
-			);
-		
-		// 랜덤한 챔피언을 뽑아 새로운 배열에 입력
-		var chosen_champ = new Array();
-		var idx = 0;
-		while (chosen_champ.length<select_champ_count){
-			select = champ[rand(champ.length)];
-			if (chosen_champ.indexOf(select) == -1){
-				chosen_champ[idx] = select;
-				idx ++;
-			}
-		};
+		);
 
-		// html에 출력
-		document.write("<article>")
-		document.write("<div class='team'>");
-		for (var i=0; i < select_champ_count; i++)
-		{
-			in_text = chosen_champ[i]
-			document.write("<li><div class='img'><img width=70px height=70px src='./imgs/"+in_text+".jpg'></div><div class='champ_name'>"+in_text+"</div></li>")
-			if (i+1 == select_champ_count/2){
-				document.write("</div>");
-				document.write("<div class='team'>");
-			}
-		};
-		document.write("</div>");
-		document.write("</article>")
-		document.write("챔피언 수: "+champ.length);
-		
-		
+		// 페이지 구성
+		function view(select_champ_count=12){
+			// 랜덤한 챔피언을 뽑아 새로운 배열에 입력
+			var chosen_champ = new Array();
+			var idx = 0;
+			while (chosen_champ.length<select_champ_count){
+				select = champ[rand(champ.length)];
+				if (chosen_champ.indexOf(select) == -1){
+					chosen_champ[idx] = select;
+					idx ++;
+				}
+			};
+
+			// html로 출력
+			document.write("<article>")
+			document.write("<div class='team'>");
+			for (var i=0; i < select_champ_count; i++)
+			{
+				in_text = chosen_champ[i]
+				document.write("<li><div class='img'><img width=70px height=70px src='./imgs/"+in_text+".jpg'></div><div class='champ_name'>"+in_text+"</div></li>")
+				if (i+1 == Math.ceil(select_champ_count/2)){
+					document.write("</div>");
+					document.write("<div class='team'>");
+				}
+			};
+			document.write("</div>");
+			document.write("</article>")
+			document.write("챔피언 수: "+champ.length);
+		}
+
+		// 입력값을 받으면 새로 반영
+		function user_setting_view(){
+			const new_view = document.getElementById('champ_count').value;
+			document.write('<link rel="stylesheet" href="view_setting.css">')
+			view(new_view);
+		}
+
+		// 초기 페이지 출력
+		view();
 	</script>
+	<body>
+		<div id="user_input">
+			<input id="champ_count" type="text">
+			<input class="button"type="button" onclick="user_setting_view()" value="  ">
+		</div>
+	</body>
 </html>
