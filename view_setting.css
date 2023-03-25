@@ -1,0 +1,37 @@
+li{
+    border:1px solid black; 
+    list-style: none;
+}
+article{
+    display:flex; 
+    height:95%; 
+    justify-content: center; 
+    align-items:center;
+}
+.team{
+    float:left;
+    width:500px;
+    margin-right:20px; 
+    border:1px solid black;
+}
+.img{
+    width: 70px;
+    height: 70px;
+    float:left;
+    margin-right:10px;
+}
+.champ_name{
+    height: 70px; 
+    line-height: 70px; 
+    font-size:20px; 
+    font-weight: bold; 
+}
+#user_input{
+    float:right;
+}
+#champ_count{
+    width:50px;
+}
+.button{
+    width:40px;
+}
