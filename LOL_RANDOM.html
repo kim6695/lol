@@ -2,6 +2,22 @@
 	<head>
 		<link rel="stylesheet" href="view_setting.css">
 	</head>
+	<body>
+		<article>
+			<div id="team_a">
+
+			</div>
+			<div id="team_b">
+
+			</div>
+		</article>
+		<footer>
+			<p id="f_newest"></p>
+		</footer>
+		<div id="user_input">
+			<input id="champ_count" type="text" onkeyup="if(window.event.keyCode==13){user_setting_view()}"	autofocus>
+		</div>
+	</body>
 	<script>
 		// 난수 생성
 		function rand(len){
@@ -36,41 +52,37 @@
 			};
 			return result;
 		};
+		function make_list_html(person, selected_champ_list){
+			var result_html = "";
+			for (var i=0; i<person;i++){
+				var name = selected_champ_list[i];
+				result_html += "<li><div class='img'><img width=70px height=70px src='./imgs/"+name+".jpg'></div><div class='champ_name'>"+name+"</div></li>";
+			};
+			return result_html;
+		}
 		// 페이지 구성
 		function view(person=6){
-			var chosen_champ = select_champ(champ, person*2)
+			var chosen_champ = select_champ(champ, person*2);
+			var team_a_champ = chosen_champ.slice(0,person);
+			var team_b_champ = chosen_champ.slice(person,);
 			// html로 출력
-			document.write("<article>")
-			document.write("<div class='team'>");
-			for (var i=0; i < person*2; i++)
-			{
-				in_text = chosen_champ[i]
-				document.write("<li><div class='img'><img width=70px height=70px src='./imgs/"+in_text+".jpg'></div><div class='champ_name'>"+in_text+"</div></li>")
-				if (i+1 == Math.ceil(person)){
-					document.write("</div>");
-					document.write("<div class='team'>");
-				}
-			};
-			document.write("</div>");
-			document.write("</article>");
+			var team_a = document.getElementById('team_a');
+			team_a.innerHTML = make_list_html(person, team_a_champ);
 
-			document.write("챔피언 수: "+champ.length);
-			document.write("</br>최신: "+champ[champ.length-1])
+			var team_b = document.getElementById('team_b');
+			team_b.innerHTML = make_list_html(person, team_b_champ);
+
+			var f_newest = document.getElementById('f_newest');
+			f_newest.innerText = "챔피언 : "+champ.length+"개 ("+champ[champ.length-1]+")";
 		}
 
 		// 입력값을 받으면 새로 반영
 		function user_setting_view(){
 			const uesr_input_num = document.getElementById('champ_count').value;
-			document.write('<link rel="stylesheet" href="view_setting.css">')
 			view(uesr_input_num);
 		}
 
 		// 초기 페이지 출력
 		view();
 	</script>
-	<body>
-		<div id="user_input">
-			<input id="champ_count" type="text" onkeyup="if(window.event.keyCode==13){user_setting_view()}"	autofocus>
-		</div>
-	</body>
 </html>

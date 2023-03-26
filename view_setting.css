@@ -8,7 +8,7 @@ article{
     justify-content: center; 
     align-items:center;
 }
-.team{
+#team_a, #team_b{
     float:left;
     width:500px;
     margin-right:20px; 
