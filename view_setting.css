@@ -29,11 +29,21 @@ article{
     font-size:20px; 
     font-weight: bold; 
 }
-#user_input{
-    float:right;
+#f_newest{
+    float:left;
+    margin-left:100px;
 }
 #champ_count{
-    width:50px;
+    float:right;
+    margin-right:100px;
+    width: 100px;
+    height: 32px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
 }
 .dice{
     margin-top: 4px;
