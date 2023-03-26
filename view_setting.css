@@ -15,12 +15,14 @@ article{
     border:1px solid black;
 }
 .img{
+    float:left;
     width: 70px;
     height: 70px;
-    float:left;
     margin-right:10px;
 }
 .champ_name{
+    float:left;
+    width:300px;
     height: 70px; 
     line-height: 70px; 
     font-size:20px; 
@@ -34,4 +36,9 @@ article{
 }
 .button{
     width:40px;
+}
+.dice{
+    margin-top: 4px;
+    width:70px;
+    height:61px;
 }
