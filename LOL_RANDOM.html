@@ -5,10 +5,8 @@
 	<body>
 		<article>
 			<div id="team_a">
-
 			</div>
 			<div id="team_b">
-
 			</div>
 		</article>
 		<footer>
@@ -52,22 +50,23 @@
 			};
 			return result;
 		};
+		
+		// 숫자에 따라 html 구성
 		function make_list_html(person, selected_champ_list, team_name){
 			var team_name = team_name.slice(-1);
 			var result_html = "";
 			for (var i=0; i<person;i++){
 				var name = selected_champ_list[i];
-				result_html += "<li><div class='img'><img width=70px height=70px src='./imgs/"+name+".jpg'></div><div class='champ_name'>"+name+"</div><input type='button' class='dice' id='"+team_name+i+"' onclick=dice_click(this)></li>";
+				result_html += "<li><div class='img'><img width=70px height=70px src='./imgs/"+name+".jpg'></div><div class='champ_name'>"+name+"</div><button type='button' class='dice' id='"+team_name+i+"' onclick=dice_click(this)></button></li>";
 			};
 			return result_html;
 		}
 
 		// 팀 챔피언 구성
-		function view(chosen_champ,person,team_name){
-			var team_champ = chosen_champ.slice(0,person);
+		function view(champ_arr,person,team_name){
 			// html로 출력
 			var team = document.getElementById(team_name);
-			team.innerHTML = make_list_html(person, team_champ, team_name);
+			team.innerHTML = make_list_html(person, champ_arr, team_name);
 		}
 
 		//footer
@@ -77,20 +76,44 @@
 		
 		// 초기 페이지 출력
 		var person = 6;
+		
 		var chosen_champ = select_champ(champ, person*2);
-		view(chosen_champ,person,'team_a');
-		view(chosen_champ,person,'team_b');
+		var a_champs = chosen_champ.slice(0,person);
+		var b_champs = chosen_champ.slice(person);
+		view(a_champs,person,'team_a');
+		view(b_champs,person,'team_b');
 		
 		// 입력값을 받으면 새로 반영
 		function user_setting_view(){
 			const uesr_input_num = document.getElementById('champ_count').value;
-			view(chosen_champ,uesr_input_num,'team_a');
-			view(chosen_champ,uesr_input_num,'team_b');
+			person = uesr_input_num
+			chosen_champ = select_champ(champ, person*2);
+			a_champs = chosen_champ.slice(0,person);
+			b_champs = chosen_champ.slice(person);
+			view(a_champs,person,'team_a');
+			view(b_champs,person,'team_b');
 		}
 
 		// 주사위 클릭하면
-		function dice_click(a){
-			alert(a.id)
+		function dice_click(dice){
+			var dice_team = dice.id.substr(0,1);
+			var dice_num = dice.id.substr(1);
+			
+			while (true){
+				new_champ = champ[rand(champ.length)];
+				if (chosen_champ.indexOf(new_champ) == -1){
+					chosen_champ.push(new_champ);
+					break
+				}
+			}
+
+			if (dice_team=='a'){
+				a_champs[dice_num] = new_champ;
+			} else {
+				b_champs[dice_num] = new_champ;
+			}
+			view(a_champs,person,'team_a');
+			view(b_champs,person,'team_b');
 		}
 		</script>
 </html>

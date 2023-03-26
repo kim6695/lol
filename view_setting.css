@@ -1,6 +1,7 @@
 li{
     border:1px solid black; 
     list-style: none;
+    height: 70px;
 }
 article{
     display:flex; 
@@ -33,9 +34,6 @@ article{
 }
 #champ_count{
     width:50px;
-}
-.button{
-    width:40px;
 }
 .dice{
     margin-top: 4px;
