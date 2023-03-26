@@ -52,37 +52,45 @@
 			};
 			return result;
 		};
-		function make_list_html(person, selected_champ_list){
+		function make_list_html(person, selected_champ_list, team_name){
+			var team_name = team_name.slice(-1);
 			var result_html = "";
 			for (var i=0; i<person;i++){
 				var name = selected_champ_list[i];
-				result_html += "<li><div class='img'><img width=70px height=70px src='./imgs/"+name+".jpg'></div><div class='champ_name'>"+name+"</div></li>";
+				result_html += "<li><div class='img'><img width=70px height=70px src='./imgs/"+name+".jpg'></div><div class='champ_name'>"+name+"</div><input type='button' class='dice' id='"+team_name+i+"' onclick=dice_click(this)></li>";
 			};
 			return result_html;
 		}
-		// 페이지 구성
-		function view(person=6){
-			var chosen_champ = select_champ(champ, person*2);
-			var team_a_champ = chosen_champ.slice(0,person);
-			var team_b_champ = chosen_champ.slice(person,);
+
+		// 팀 챔피언 구성
+		function view(chosen_champ,person,team_name){
+			var team_champ = chosen_champ.slice(0,person);
 			// html로 출력
-			var team_a = document.getElementById('team_a');
-			team_a.innerHTML = make_list_html(person, team_a_champ);
-
-			var team_b = document.getElementById('team_b');
-			team_b.innerHTML = make_list_html(person, team_b_champ);
-
-			var f_newest = document.getElementById('f_newest');
-			f_newest.innerText = "챔피언 : "+champ.length+"개 ("+champ[champ.length-1]+")";
+			var team = document.getElementById(team_name);
+			team.innerHTML = make_list_html(person, team_champ, team_name);
 		}
 
+		//footer
+		var f_newest = document.getElementById('f_newest');
+		f_newest.innerText = "챔피언 : "+champ.length+"개 ("+champ[champ.length-1]+")";
+		
+		
+		// 초기 페이지 출력
+		var person = 6;
+		var chosen_champ = select_champ(champ, person*2);
+		view(chosen_champ,person,'team_a');
+		view(chosen_champ,person,'team_b');
+		
 		// 입력값을 받으면 새로 반영
 		function user_setting_view(){
 			const uesr_input_num = document.getElementById('champ_count').value;
-			view(uesr_input_num);
+			view(chosen_champ,uesr_input_num,'team_a');
+			view(chosen_champ,uesr_input_num,'team_b');
 		}
 
-		// 초기 페이지 출력
-		view();
-	</script>
+		// 주사위 클릭하면
+		function dice_click(a){
+			alert(a.id)
+		}
+		</script>
 </html>
