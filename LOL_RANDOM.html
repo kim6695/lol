@@ -4,10 +4,12 @@
 	</head>
 	<body>
 		<article>
+			<div class="dice_count" id="first_dice_box"><img class="dice_img" src="./dice.png" alt=""><p class="number" id="dice_reft_count_1">3</p></div>
 			<div id="team_a">
 			</div>
 			<div id="team_b">
 			</div>
+			<div class="dice_count"><img class="dice_img" src="./dice.png" alt=""><p class="number" id="dice_reft_count_2">3</p></div>
 		</article>
 		<footer>
 			<p id="f_newest"></p>
@@ -19,6 +21,14 @@
 		function rand(len){
 			return Math.floor(Math.random() * (len));
 		};
+
+		// 주사위 초기화
+		function dice_init(){
+			var dice_a_count = document.getElementById('dice_reft_count_1');
+			dice_a_count.innerText = 3;
+			var dice_b_count = document.getElementById('dice_reft_count_2');
+			dice_b_count.innerText = 3;
+		}
 		
 		// 챔피언 리스트
 		var champ = new Array(
@@ -73,6 +83,9 @@
 		
 		
 		// 초기 페이지 출력
+		var left_dice_count = 3;
+		var right_dice_count = 3;
+
 		var person = 6;
 		
 		var chosen_champ = select_champ(champ, person*2);
@@ -81,6 +94,7 @@
 		view(a_champs,person,'team_a');
 		view(b_champs,person,'team_b');
 		
+
 		// 입력값을 받으면 새로 반영
 		function user_setting_view(){
 			const uesr_input_num = document.getElementById('champ_count').value;
@@ -88,8 +102,13 @@
 			chosen_champ = select_champ(champ, person*2);
 			a_champs = chosen_champ.slice(0,person);
 			b_champs = chosen_champ.slice(person);
+
 			view(a_champs,person,'team_a');
 			view(b_champs,person,'team_b');
+
+			left_dice_count = 3;
+			right_dice_count = 3;
+			dice_init();
 		}
 
 		// 주사위 클릭하면
@@ -104,14 +123,30 @@
 					break
 				}
 			}
-
+			
 			if (dice_team=='a'){
-				a_champs[dice_num] = new_champ;
+				if (left_dice_count > 0){
+					a_champs[dice_num] = new_champ;
+					left_dice_count--;
+				} else {
+					return;
+				}
 			} else {
-				b_champs[dice_num] = new_champ;
+				if (right_dice_count > 0){
+					b_champs[dice_num] = new_champ;
+					right_dice_count--;
+				} else {
+					return;
+				}
 			}
+
 			view(a_champs,person,'team_a');
 			view(b_champs,person,'team_b');
+
+			var dice_a_count = document.getElementById('dice_reft_count_1');
+			dice_a_count.innerText = left_dice_count;
+			var dice_b_count = document.getElementById('dice_reft_count_2');
+			dice_b_count.innerText = right_dice_count;
 		}
 		</script>
 </html>

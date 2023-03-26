@@ -50,3 +50,19 @@ article{
     width:70px;
     height:61px;
 }
+#first_dice_box{
+    margin-right: 20px;
+}
+.dice_img{
+    width:100px;
+    height:100px;
+}
+.dice_count{
+    width:100px;
+}
+.number{
+    margin-top:0px;
+    font-size:40px;
+    text-align: center;
+    font-weight: bold;
+}
