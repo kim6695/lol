@@ -46,9 +46,20 @@ article{
     background-color: rgb(233, 233, 233);
 }
 .dice{
-    margin-top: 4px;
-    width:70px;
-    height:61px;
+    border:none;
+    border-radius: 11px;
+    margin-left:28px;
+    margin-top:13px;
+    width:80px;
+    height:44px;
+    background-color: #46495c;
+}
+.dice:hover{
+    background-color: #62688a;
+}
+.dice:active{
+    background-color: #62688a;
+    border:5px solid white;
 }
 #first_dice_box{
     margin-right: 20px;

@@ -98,7 +98,12 @@
 		// 입력값을 받으면 새로 반영
 		function user_setting_view(){
 			const uesr_input_num = document.getElementById('champ_count').value;
-			person = uesr_input_num
+			person = uesr_input_num;
+			if (uesr_input_num > 10) {
+				person = 10;
+				var input = document.getElementById("champ_count");
+				input.setAttribute('placeholder','10 이하');
+			}
 			chosen_champ = select_champ(champ, person*2);
 			a_champs = chosen_champ.slice(0,person);
 			b_champs = chosen_champ.slice(person);
