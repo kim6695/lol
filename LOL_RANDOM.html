@@ -23,27 +23,30 @@
 			'트리스타나','트린다미어','트위스티드 페이트','트위치','티모','파이크','판테온','피들스틱','피오라','피즈','하이머딩거','헤카림','밀리오'
 		);
 
-		// 페이지 구성
-		function view(select_champ_count=12){
-			// 랜덤한 챔피언을 뽑아 새로운 배열에 입력
-			var chosen_champ = new Array();
+		// 랜덤한 챔피언을 뽑아 리턴
+		function select_champ(space, count){
+			var result = new Array();
 			var idx = 0;
-			while (chosen_champ.length<select_champ_count){
-				select = champ[rand(champ.length)];
-				if (chosen_champ.indexOf(select) == -1){
-					chosen_champ[idx] = select;
-					idx ++;
-				}
+			while (result.length < count){
+				var select = space[rand(space.length)];
+				if (result.indexOf(select) == -1){
+					result[idx] = select;
+					idx++;
+				};
 			};
-
+			return result;
+		};
+		// 페이지 구성
+		function view(person=6){
+			var chosen_champ = select_champ(champ, person*2)
 			// html로 출력
 			document.write("<article>")
 			document.write("<div class='team'>");
-			for (var i=0; i < select_champ_count; i++)
+			for (var i=0; i < person*2; i++)
 			{
 				in_text = chosen_champ[i]
 				document.write("<li><div class='img'><img width=70px height=70px src='./imgs/"+in_text+".jpg'></div><div class='champ_name'>"+in_text+"</div></li>")
-				if (i+1 == Math.ceil(select_champ_count/2)){
+				if (i+1 == Math.ceil(person)){
 					document.write("</div>");
 					document.write("<div class='team'>");
 				}
