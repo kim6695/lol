@@ -134,3 +134,36 @@ function dice_click(dice){
     var dice_b_count = document.getElementById('dice_reft_count_2');
     dice_b_count.innerText = right_dice_count;
 }
+
+//팀 셔플
+function shuffle_team(){
+    const members = document.getElementById('shuffle_team').value;
+    const mems_array = [...members];
+
+    var arr = shuffleArray(mems_array);
+
+    var len = mems_array.length / 2;
+
+    mem_a = document.getElementById('mem_a');
+    mem_b = document.getElementById('mem_b');
+
+    var a_html = "";
+    for(i=0;i<len;i++){
+        a_html += "<p id='pp'>"+arr[i]+"</p>"
+    };
+    var b_html = "";
+    for(i=len;i<len*2;i++){
+        b_html += "<p id='pp'>"+arr[i]+"</p>"
+    };
+    mem_a.innerHTML = a_html;
+    mem_b.innerHTML = b_html;
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  

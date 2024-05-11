@@ -7,15 +7,20 @@
 	<body>
 		<h1>칼바람 나락 주사위 (내전용)</h1>
 		<article>
+			<div id="mem_a">
+			</div>
 			<div class="dice_count" id="first_dice_box"><img class="dice_img" src="./dice.png" alt=""><p class="number" id="dice_reft_count_1">3</p></div>
 			<div id="team_a">
 			</div>
 			<div id="team_b">
 			</div>
 			<div class="dice_count"><img class="dice_img" src="./dice.png" alt=""><p class="number" id="dice_reft_count_2">3</p></div>
+			<div id="mem_b">
+			</div>
 		</article>
 		<footer>
 			<p id="f_newest"></p>
+			<input id="shuffle_team" type="text" onkeyup="if(window.event.keyCode==13){shuffle_team()}">
 			<input id="champ_count" type="text" onkeyup="if(window.event.keyCode==13){user_setting_view()}"	autofocus>
 		</footer>
 	</body>
